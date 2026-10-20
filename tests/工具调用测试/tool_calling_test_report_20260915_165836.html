@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具调用测试报告</title>
+    <!-- 引入 ECharts 图表库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .card .label { font-size: 14px; color: #888; margin-bottom: 8px; }
+        .card .value { font-size: 28px; font-weight: bold; }
+        .card .value.green { color: #52c41a; }
+        .card .value.blue { color: #1890ff; }
+        .card .value.orange { color: #fa8c16; }
+        .section { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .section h2 { font-size: 20px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+        .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .chart { height: 350px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        th { background: #fafafa; font-weight: 600; color: #555; }
+        tr.pass { background: #f6ffed; }
+        tr.fail { background: #fff2f0; }
+        .fail-item { background: #fff2f0; border-left: 4px solid #ff4d4f; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .fail-item h4 { color: #ff4d4f; margin-bottom: 8px; }
+        .chain { background: #f0f5ff; border-left: 4px solid #1890ff; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 16px; }
+        @media (max-width: 768px) { .charts { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部标题 -->
+        <div class="header">
+            <h1>🔧 工具调用测试报告</h1>
+            <p>测试时间：2026-09-15 15:52:51 | 测试用例：40 条</p>
+        </div>
+
+        <!-- 概览卡片 -->
+        <div class="cards">
+            <div class="card">
+                <div class="label">总用例数</div>
+                <div class="value">40</div>
+            </div>
+            <div class="card">
+                <div class="label">通过率</div>
+                <div class="value green">95.0%</div>
+            </div>
+            <div class="card">
+                <div class="label">工具调用准确率</div>
+                <div class="value blue">95.0%</div>
+            </div>
+            <div class="card">
+                <div class="label">参数准确率</div>
+                <div class="value orange">100.0%</div>
+            </div>
+            <div class="card">
+                <div class="label">总耗时</div>
+                <div class="value">514.5s</div>
+            </div>
+        </div>
+
+        <!-- 统计图表 -->
+        <div class="section">
+            <h2>📊 统计图表</h2>
+            <div class="charts">
+                <div id="toolChart" class="chart"></div>
+                <div id="categoryChart" class="chart"></div>
+            </div>
+        </div>
+
+        <!-- 工具调用链路示例 -->
+        <div class="section">
+            <h2>🔗 工具调用链路示例（最复杂用例）</h2>
+            <p style="margin-bottom: 10px; color: #666;">用例：给我生成我的使用报告</p>
+            <div class="chain">get_user_id → get_current_month → fill_context_for_report → fetch_external_data</div>
+        </div>
+
+        <!-- 失败案例（如果有） -->
+        
+        <div class="section">
+            <h2>❌ 失败案例分析</h2>
+            
+            <div class="fail-item">
+                <h4>TC002: 扫地机器人报错E01是什么意思？怎么解决？</h4>
+                <p><strong>失败原因：</strong>工具调用错误: 预期调用 rag_summarize，但实际调用了 []</p>
+            </div>
+            <div class="fail-item">
+                <h4>TC040: 什么是机器学习？</h4>
+                <p><strong>失败原因：</strong>工具调用错误: 预期不调用工具，但实际调用了 ['rag_summarize']</p>
+            </div>
+        </div>
+
+        <!-- 用例详情表格 -->
+        <div class="section">
+            <h2>📋 测试用例详情</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>测试问题</th>
+                        <th>预期工具</th>
+                        <th>实际调用</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr class="pass">
+            <td>TC001</td>
+            <td>扫地机器人常见故障有哪些？</td>
+            <td>rag_summarize</td>
+            <td>rag_summarize</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="fail">
+            <td>TC002</td>
+            <td>扫地机器人报错E01是什么意思？怎么解决？</td>
+            <td>rag_summarize</td>
+            <td>无</td>
+            <td>❌ 失败</td>
+        </tr>
+        <tr class="pass">
+            <td>TC003</td>
+            <td>如何保养扫地机器人？</td>
+            <td>rag_summarize</td>
+            <td>rag_summarize</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC004</td>
+            <td>扫地机器人充不进去电怎么办？</td>
+            <td>rag_summarize</td>
+            <td>rag_summarize</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC005</td>
+            <td>耗材多久更换一次？</td>
+            <td>rag_summarize</td>
+            <td>rag_summarize</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC006</td>
+            <td>今天天气怎么样？</td>
+            <td>get_weather</td>
+            <td>get_user_location, get_weather</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC007</td>
+            <td>北京明天会下雨吗？</td>
+            <td>get_weather</td>
+            <td>get_weather</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC008</td>
+            <td>上海今天温度多少？</td>
+            <td>get_weather</td>
+            <td>get_weather</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC009</td>
+            <td>广州未来三天天气</td>
+            <td>get_weather</td>
+            <td>get_weather</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC010</td>
+            <td>深圳今天适合出门吗？</td>
+            <td>get_weather</td>
+            <td>get_weather</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC011</td>
+            <td>我在哪里？</td>
+            <td>get_user_location</td>
+            <td>get_user_location</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC012</td>
+            <td>我的位置是什么城市？</td>
+            <td>get_user_location</td>
+            <td>get_user_location</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC013</td>
+            <td>我在哪个省？</td>
+            <td>get_user_location</td>
+            <td>get_user_location</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC014</td>
+            <td>定位一下我的位置</td>
+            <td>get_user_location</td>
+            <td>get_user_location</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC015</td>
+            <td>我的用户ID是多少？</td>
+            <td>get_user_id</td>
+            <td>get_user_id</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC016</td>
+            <td>查询我的ID</td>
+            <td>get_user_id</td>
+            <td>get_user_id</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC017</td>
+            <td>我是哪个用户？</td>
+            <td>get_user_id</td>
+            <td>get_user_id</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC018</td>
+            <td>查看我的用户编号</td>
+            <td>get_user_id</td>
+            <td>get_user_id</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC019</td>
+            <td>现在是几月份？</td>
+            <td>get_current_month</td>
+            <td>get_current_month</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC020</td>
+            <td>当前月份是什么？</td>
+            <td>get_current_month</td>
+            <td>get_current_month</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC021</td>
+            <td>今天是几月？</td>
+            <td>get_current_month</td>
+            <td>get_current_month</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC022</td>
+            <td>现在是什么年月？</td>
+            <td>get_current_month</td>
+            <td>get_current_month</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC023</td>
+            <td>查询用户1001在2026-09的使用记录</td>
+            <td>fetch_external_data</td>
+            <td>fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC024</td>
+            <td>给我看看用户1002上个月的数据</td>
+            <td>fetch_external_data</td>
+            <td>get_current_month, fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC025</td>
+            <td>查询1001号用户的使用情况</td>
+            <td>fetch_external_data</td>
+            <td>get_current_month, fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC026</td>
+            <td>用户1003在2025年12月的记录</td>
+            <td>fetch_external_data</td>
+            <td>fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC027</td>
+            <td>给我生成我的使用报告</td>
+            <td>fill_context_for_report</td>
+            <td>get_user_id, get_current_month, fill_context_for_report, fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC028</td>
+            <td>生成报告</td>
+            <td>fill_context_for_report</td>
+            <td>get_user_id, get_current_month, fill_context_for_report, fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC029</td>
+            <td>帮我做一份使用情况报告</td>
+            <td>fill_context_for_report</td>
+            <td>fill_context_for_report, get_user_id, get_current_month, fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC030</td>
+            <td>生成我的月度报告</td>
+            <td>fill_context_for_report</td>
+            <td>get_user_id, get_current_month, fill_context_for_report, fetch_external_data</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC031</td>
+            <td>你好</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC032</td>
+            <td>1+1等于几？</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC033</td>
+            <td>你是谁？</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC034</td>
+            <td>谢谢</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC035</td>
+            <td>讲个笑话</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC036</td>
+            <td>今天星期几？</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC037</td>
+            <td>帮我翻译一下这句话：Hello World</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC038</td>
+            <td>写一首关于秋天的诗</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="pass">
+            <td>TC039</td>
+            <td>Python怎么读取CSV文件？</td>
+            <td>不调用工具</td>
+            <td>无</td>
+            <td>✅ 通过</td>
+        </tr>
+        <tr class="fail">
+            <td>TC040</td>
+            <td>什么是机器学习？</td>
+            <td>不调用工具</td>
+            <td>rag_summarize</td>
+            <td>❌ 失败</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ECharts 图表脚本 -->
+    <script>
+        // 图表1：各工具调用准确率（柱状图）
+        var toolChart = echarts.init(document.getElementById('toolChart'));
+        toolChart.setOption({
+            title: { text: '各工具调用准确率', left: 'center' },
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: ["rag_summarize", "get_weather", "get_user_location", "get_user_id", "get_current_month", "fetch_external_data", "fill_context_for_report", "不调用工具"], axisLabel: { rotate: 30 } },
+            yAxis: { type: 'value', max: 100, name: '准确率(%)' },
+            series: [{
+                type: 'bar',
+                data: [80.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 90.0],
+                itemStyle: { color: '#1890ff' },
+                label: { show: true, position: 'top', formatter: '{c}%' }
+            }]
+        });
+
+        // 图表2：各类别通过率对比（柱状图+折线图）
+        var categoryChart = echarts.init(document.getElementById('categoryChart'));
+        categoryChart.setOption({
+            title: { text: '各类别通过率对比', left: 'center' },
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['通过率', '用例数'], bottom: 0 },
+            xAxis: { type: 'category', data: ["RAG检索", "工具调用", "边界测试"] },
+            yAxis: [
+                { type: 'value', max: 100, name: '通过率(%)' },
+                { type: 'value', name: '用例数' }
+            ],
+            series: [
+                { type: 'bar', name: '通过率', data: [80.0, 100.0, 90.0], itemStyle: { color: '#52c41a' }, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { type: 'line', name: '用例数', yAxisIndex: 1, data: [5, 25, 10], itemStyle: { color: '#fa8c16' } }
+            ]
+        });
+
+        // 响应式：窗口大小变化时重绘图表
+        window.addEventListener('resize', function() {
+            toolChart.resize();
+            categoryChart.resize();
+        });
+    </script>
+</body>
+</html>

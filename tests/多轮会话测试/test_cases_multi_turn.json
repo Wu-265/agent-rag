@@ -1,0 +1,139 @@
+[
+  {
+    "id": "MT001",
+    "name": "基本记忆测试",
+    "category": "基本记忆",
+    "turns": [
+      {
+        "turn": 1,
+        "query": "我叫小明，今年20岁，在河南农业大学上学",
+        "expected_keywords": null,
+        "note": "第一轮：告诉agent个人信息"
+      },
+      {
+        "turn": 2,
+        "query": "我叫什么名字？",
+        "expected_keywords": ["小明"],
+        "note": "第二轮：问名字，应该回答包含'小明'"
+      },
+      {
+        "turn": 3,
+        "query": "我多大了？",
+        "expected_keywords": ["20"],
+        "note": "第三轮：问年龄，应该回答包含'20'"
+      },
+      {
+        "turn": 4,
+        "query": "我在哪个学校上学？",
+        "expected_keywords": ["河南农业大学"],
+        "note": "第四轮：问学校，应该回答包含'河南农业大学'"
+      }
+    ]
+  },
+  {
+    "id": "MT002",
+    "name": "指代消解测试",
+    "category": "指代消解",
+    "turns": [
+      {
+        "turn": 1,
+        "query": "北京今天天气怎么样？",
+        "expected_keywords": ["北京"],
+        "note": "第一轮：问北京天气"
+      },
+      {
+        "turn": 2,
+        "query": "那上海呢？",
+        "expected_keywords": ["上海"],
+        "note": "第二轮：问'那上海呢'，agent应该理解'那'指天气，去查上海天气"
+      },
+      {
+        "turn": 3,
+        "query": "那广州的温度是多少？",
+        "expected_keywords": ["广州"],
+        "note": "第三轮：继续问广州，应该理解还是问天气"
+      }
+    ]
+  },
+  {
+    "id": "MT003",
+    "name": "上下文连贯测试",
+    "category": "上下文连贯",
+    "turns": [
+      {
+        "turn": 1,
+        "query": "我想买一个扫地机器人，有什么推荐吗？",
+        "expected_keywords": ["扫地机器人"],
+        "note": "第一轮：开启话题"
+      },
+      {
+        "turn": 2,
+        "query": "它的续航时间一般是多久？",
+        "expected_keywords": ["续航"],
+        "note": "第二轮：用'它'指代扫地机器人，问续航，应该理解'它'指扫地机器人"
+      },
+      {
+        "turn": 3,
+        "query": "那噪音大吗？",
+        "expected_keywords": ["噪音"],
+        "note": "第三轮：用'那'承接上文，问噪音，应该理解还是问扫地机器人"
+      }
+    ]
+  },
+  {
+    "id": "MT004",
+    "name": "多信息记忆测试",
+    "category": "多信息记忆",
+    "turns": [
+      {
+        "turn": 1,
+        "query": "我喜欢蓝色，我养了一只猫叫橘子，我最喜欢的食物是火锅",
+        "expected_keywords": null,
+        "note": "第一轮：一次性告诉多个信息"
+      },
+      {
+        "turn": 2,
+        "query": "我喜欢什么颜色？",
+        "expected_keywords": ["蓝"],
+        "note": "第二轮：问颜色"
+      },
+      {
+        "turn": 3,
+        "query": "我的猫叫什么？",
+        "expected_keywords": ["橘子"],
+        "note": "第三轮：问猫的名字"
+      },
+      {
+        "turn": 4,
+        "query": "我最喜欢吃什么？",
+        "expected_keywords": ["火锅"],
+        "note": "第四轮：问食物"
+      }
+    ]
+  },
+  {
+    "id": "MT005",
+    "name": "工具调用+记忆结合测试",
+    "category": "综合能力",
+    "turns": [
+      {
+        "turn": 1,
+        "query": "我叫张三",
+        "expected_keywords": null,
+        "note": "第一轮：告诉名字"
+      },
+      {
+        "turn": 2,
+        "query": "今天天气怎么样？",
+        "expected_keywords": ["天气"],
+        "note": "第二轮：问天气，应该调用天气工具"
+      },
+      {
+        "turn": 3,
+        "query": "我刚才说我叫什么来着？",
+        "expected_keywords": ["张三"],
+        "note": "第三轮：在调用工具后，还能不能记住之前的名字"
+      }
+    ]
+  }
+]

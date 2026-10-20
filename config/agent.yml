@@ -1,0 +1,11 @@
+# 外部数据：用户使用记录
+external_data_path: data/external/records.csv
+
+# 当前本地用户的真实身份与位置（不再随机生成）
+# default_user_id: 报告生成等场景使用的当前用户ID，对应 records.csv 中的用户ID（如 1001）
+default_user_id: "1001"
+# user_city: 可选。填写后直接作为用户所在城市（最可靠）；留空则自动通过 IP 定位反查最近城市
+user_city: "许昌"
+
+# 上传文件目录（相对项目根目录）
+upload_dir: data/uploads

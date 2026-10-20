@@ -1,0 +1,47 @@
+{
+  "name": "记忆极限测试（多组独立测试）",
+  "secret_keywords": ["苹果", "香蕉", "橘子"],
+  "memory_window_config": 12,
+  "description": "每组测试独立运行，history从头开始，避免刷新效应。每组结构：埋密码 + N轮无关 + 最后一轮问密码",
+  "test_groups": [
+    {
+      "group_id": "A",
+      "description": "4轮无关对话后测试（历史10条，第1轮在窗口内，应该能记住）",
+      "embed_turn": {"query": "我的秘密密码是：苹果香蕉橘子，请牢牢记住"},
+      "distract_turns": [
+        {"query": "今天天气怎么样？"},
+        {"query": "1+1等于几？"},
+        {"query": "你好"},
+        {"query": "今天星期几？"}
+      ],
+      "test_turn": {"query": "我第一轮说的密码是什么？"}
+    },
+    {
+      "group_id": "B",
+      "description": "5轮无关对话后测试（历史12条，第1轮在边界，可能记住）",
+      "embed_turn": {"query": "我的秘密密码是：苹果香蕉橘子，请牢牢记住"},
+      "distract_turns": [
+        {"query": "今天天气怎么样？"},
+        {"query": "1+1等于几？"},
+        {"query": "你好"},
+        {"query": "今天星期几？"},
+        {"query": "北京明天会下雨吗？"}
+      ],
+      "test_turn": {"query": "我第一轮说的密码是什么？"}
+    },
+    {
+      "group_id": "C",
+      "description": "6轮无关对话后测试（历史14条，第1轮被截断，应该记不住）",
+      "embed_turn": {"query": "我的秘密密码是：苹果香蕉橘子，请牢牢记住"},
+      "distract_turns": [
+        {"query": "今天天气怎么样？"},
+        {"query": "1+1等于几？"},
+        {"query": "你好"},
+        {"query": "今天星期几？"},
+        {"query": "北京明天会下雨吗？"},
+        {"query": "上海今天温度多少？"}
+      ],
+      "test_turn": {"query": "我第一轮说的密码是什么？"}
+    }
+  ]
+}

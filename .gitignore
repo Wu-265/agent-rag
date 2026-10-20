@@ -1,0 +1,46 @@
+# ---- IDE / 编辑器 ----
+.idea/
+.vscode/
+*.iml
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.egg-info/
+dist/
+build/
+
+# ---- 运行日志 ----
+logs/
+*.log
+
+# ---- 向量数据库 / 缓存 ----
+chroma_db/
+rag/chroma_db/
+**/chroma_db/
+
+# ---- 私有数据（知识库、上传文件、用户数据）----
+data/
+
+# ---- 个人简历与相关私有文件 ----
+武正阳_简历.docx
+resume_check.txt
+resume_structure.txt
+fill_resume.py
+md5.text
+
+# ---- 测试产物 / 缓存 ----
+tests/**/test_files/
+tests/**/chroma_db/
+tests/**/*results*.json
+tests/**/*results*.html
+
+# ---- 密钥与敏感信息 ----
+.env
+.env.*
+*.key
+*secret*
+*api_key*

@@ -1,0 +1,322 @@
+[
+  {
+    "id": "TC001",
+    "query": "扫地机器人常见故障有哪些？",
+    "expected_tool": "rag_summarize",
+    "expected_args": null,
+    "category": "RAG检索",
+    "note": "知识库检索-故障查询"
+  },
+  {
+    "id": "TC002",
+    "query": "扫地机器人报错E01是什么意思？怎么解决？",
+    "expected_tool": "rag_summarize",
+    "expected_args": null,
+    "category": "RAG检索",
+    "note": "知识库检索-使用说明"
+  },
+  {
+    "id": "TC003",
+    "query": "如何保养扫地机器人？",
+    "expected_tool": "rag_summarize",
+    "expected_args": null,
+    "category": "RAG检索",
+    "note": "知识库检索-保养建议"
+  },
+  {
+    "id": "TC004",
+    "query": "扫地机器人充不进去电怎么办？",
+    "expected_tool": "rag_summarize",
+    "expected_args": null,
+    "category": "RAG检索",
+    "note": "知识库检索-具体故障"
+  },
+  {
+    "id": "TC005",
+    "query": "耗材多久更换一次？",
+    "expected_tool": "rag_summarize",
+    "expected_args": null,
+    "category": "RAG检索",
+    "note": "知识库检索-耗材周期"
+  },
+  {
+    "id": "TC006",
+    "query": "今天天气怎么样？",
+    "expected_tool": "get_weather",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "天气查询-未指定城市，需先调get_user_location"
+  },
+  {
+    "id": "TC007",
+    "query": "北京明天会下雨吗？",
+    "expected_tool": "get_weather",
+    "expected_args": {"city": "北京"},
+    "category": "工具调用",
+    "note": "天气查询-指定城市"
+  },
+  {
+    "id": "TC008",
+    "query": "上海今天温度多少？",
+    "expected_tool": "get_weather",
+    "expected_args": {"city": "上海"},
+    "category": "工具调用",
+    "note": "天气查询-指定城市"
+  },
+  {
+    "id": "TC009",
+    "query": "广州未来三天天气",
+    "expected_tool": "get_weather",
+    "expected_args": {"city": "广州"},
+    "category": "工具调用",
+    "note": "天气查询-指定城市"
+  },
+  {
+    "id": "TC010",
+    "query": "深圳今天适合出门吗？",
+    "expected_tool": "get_weather",
+    "expected_args": {"city": "深圳"},
+    "category": "工具调用",
+    "note": "天气查询-指定城市"
+  },
+  {
+    "id": "TC011",
+    "query": "我在哪里？",
+    "expected_tool": "get_user_location",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "位置查询"
+  },
+  {
+    "id": "TC012",
+    "query": "我的位置是什么城市？",
+    "expected_tool": "get_user_location",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "位置查询"
+  },
+  {
+    "id": "TC013",
+    "query": "我在哪个省？",
+    "expected_tool": "get_user_location",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "位置查询"
+  },
+  {
+    "id": "TC014",
+    "query": "定位一下我的位置",
+    "expected_tool": "get_user_location",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "位置查询"
+  },
+  {
+    "id": "TC015",
+    "query": "我的用户ID是多少？",
+    "expected_tool": "get_user_id",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "用户ID查询"
+  },
+  {
+    "id": "TC016",
+    "query": "查询我的ID",
+    "expected_tool": "get_user_id",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "用户ID查询"
+  },
+  {
+    "id": "TC017",
+    "query": "我是哪个用户？",
+    "expected_tool": "get_user_id",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "用户ID查询"
+  },
+  {
+    "id": "TC018",
+    "query": "查看我的用户编号",
+    "expected_tool": "get_user_id",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "用户ID查询"
+  },
+  {
+    "id": "TC019",
+    "query": "现在是几月份？",
+    "expected_tool": "get_current_month",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "当前月份查询"
+  },
+  {
+    "id": "TC020",
+    "query": "当前月份是什么？",
+    "expected_tool": "get_current_month",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "当前月份查询"
+  },
+  {
+    "id": "TC021",
+    "query": "今天是几月？",
+    "expected_tool": "get_current_month",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "当前月份查询"
+  },
+  {
+    "id": "TC022",
+    "query": "现在是什么年月？",
+    "expected_tool": "get_current_month",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "当前月份查询"
+  },
+  {
+    "id": "TC023",
+    "query": "查询用户1001在2026-09的使用记录",
+    "expected_tool": "fetch_external_data",
+    "expected_args": {"user_id": "1001", "month": "2026-09"},
+    "category": "工具调用",
+    "note": "外部数据查询-指定用户和月份"
+  },
+  {
+    "id": "TC024",
+    "query": "给我看看用户1002上个月的数据",
+    "expected_tool": "fetch_external_data",
+    "expected_args": {"user_id": "1002"},
+    "category": "工具调用",
+    "note": "外部数据查询-指定用户，月份需模型推断"
+  },
+  {
+    "id": "TC025",
+    "query": "查询1001号用户的使用情况",
+    "expected_tool": "fetch_external_data",
+    "expected_args": {"user_id": "1001"},
+    "category": "工具调用",
+    "note": "外部数据查询-指定用户"
+  },
+  {
+    "id": "TC026",
+    "query": "用户1003在2025年12月的记录",
+    "expected_tool": "fetch_external_data",
+    "expected_args": {"user_id": "1003", "month": "2025-12"},
+    "category": "工具调用",
+    "note": "外部数据查询-指定用户和月份，中文月份格式"
+  },
+  {
+    "id": "TC027",
+    "query": "给我生成我的使用报告",
+    "expected_tool": "fill_context_for_report",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "报告生成-复杂多工具链路"
+  },
+  {
+    "id": "TC028",
+    "query": "生成报告",
+    "expected_tool": "fill_context_for_report",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "报告生成-复杂多工具链路"
+  },
+  {
+    "id": "TC029",
+    "query": "帮我做一份使用情况报告",
+    "expected_tool": "fill_context_for_report",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "报告生成-复杂多工具链路"
+  },
+  {
+    "id": "TC030",
+    "query": "生成我的月度报告",
+    "expected_tool": "fill_context_for_report",
+    "expected_args": null,
+    "category": "工具调用",
+    "note": "报告生成-复杂多工具链路"
+  },
+  {
+    "id": "TC031",
+    "query": "你好",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "闲聊-不应调用工具"
+  },
+  {
+    "id": "TC032",
+    "query": "1+1等于几？",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "简单计算-不应调用工具"
+  },
+  {
+    "id": "TC033",
+    "query": "你是谁？",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "身份询问-不应调用工具"
+  },
+  {
+    "id": "TC034",
+    "query": "谢谢",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "礼貌用语-不应调用工具"
+  },
+  {
+    "id": "TC035",
+    "query": "讲个笑话",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "娱乐请求-不应调用工具"
+  },
+  {
+    "id": "TC036",
+    "query": "今天星期几？",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "日期询问-模型可直接回答，不应调用工具"
+  },
+  {
+    "id": "TC037",
+    "query": "帮我翻译一下这句话：Hello World",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "翻译-模型可直接回答，不应调用工具"
+  },
+  {
+    "id": "TC038",
+    "query": "写一首关于秋天的诗",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "创作-模型可直接回答，不应调用工具"
+  },
+  {
+    "id": "TC039",
+    "query": "Python怎么读取CSV文件？",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "编程问题-模型可直接回答，不应调用工具"
+  },
+  {
+    "id": "TC040",
+    "query": "什么是机器学习？",
+    "expected_tool": null,
+    "expected_args": null,
+    "category": "边界测试",
+    "note": "概念解释-模型可直接回答，不应调用工具"
+  }
+]
