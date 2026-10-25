@@ -14,6 +14,7 @@ class  VectorStoreService:
             collection_name  =chroma_conf["collection_name"],
             embedding_function = embed_model ,
             persist_directory = chroma_conf["persist_directory"] ,
+            collection_metadata={"hnsw:space": chroma_conf["hnsw_space"]},
         )
 
         self.spliter = RecursiveCharacterTextSplitter(

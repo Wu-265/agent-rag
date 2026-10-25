@@ -1,6 +1,7 @@
 collection_name: agent
 persist_directory: rag/chroma_db
 k: 5
+hnsw_space: "cosine"
 data_path: data
 md5_hex_store: md5.text
 allow_knowledge_file_type: ["txt","pdf"]
