@@ -49,12 +49,23 @@
 
 ### 2. 安装依赖
 
+建议在虚拟环境中安装，避免污染全局 Python（推荐）：
+
 ```bash
+# 创建并激活虚拟环境
+python -m venv .venv
+
+# Windows (PowerShell)
+.venv\Scripts\activate
+# macOS / Linux
+source .venv/bin/activate
+
+# 安装依赖（清单见 requirements.txt，共 16 个核心包）
 pip install -r requirements.txt
 ```
 
-> 项目当前未内置 `requirements.txt`，可参考下列核心依赖安装：
-> `langchain` `langchain-community` `langchain-core` `langchain-text-splitters` `langgraph` `chromadb` `streamlit` `dashscope` `pandas` `python-docx` `jieba` `requests` `pyyaml`
+> 国内网络较慢时，可加镜像源加速安装：
+> `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 ### 3. 配置 API Key
 
